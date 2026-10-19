@@ -1,14 +1,16 @@
-## SQL Data Quality Checks
-The project loads sample sales data into a temporary SQLite database and runs five SQL checks.
+## Automated Testing
 
-- Duplicate order IDs
-- Missing customer IDs
-- Zero or negative quantities
-- Negative unit prices
-- Incorrect totals
+A regression test checks that the original sample produces:
+- 10 records checked
+- 5 issues found
+- The expected messages for duplicates, a missing customer ID, an incorrect total, and a negative quantity
 
-Both Python and SQL checks run through GitHub Actions.
+Run the test locally:
 
-### SQL Files
-- [SQL queries](sql/data_quality_checks.sql)
-- [Python SQL runner](src/run_sql_checks.py)d created for this portfolio project.
+```bash
+python -m unittest discover -s tests -v
+```
+
+GitHub Actions runs this test automatically before running the Python and SQL checks.
+
+This test covers the original sample. Additional scenarios, including invalid numeric values and negative prices, still need separate tests.
